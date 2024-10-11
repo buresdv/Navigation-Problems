@@ -8,10 +8,24 @@
 import SwiftUI
 
 @main
-struct Navigation_ProblemsApp: App {
-    var body: some Scene {
-        WindowGroup {
+struct Navigation_ProblemsApp: App
+{
+    
+    @State var appState: AppState = .init()
+    @State var exampleModelTracker: ExampleModelTracker = .init()
+    
+    var body: some Scene
+    {
+        WindowGroup
+        {
             ContentView()
+                .onAppear
+                {
+                    exampleModelTracker.data.append(.init(name: "First"))
+                    exampleModelTracker.data.append(.init(name: "Second"))
+                }
+                .environment(appState)
+                .environment(exampleModelTracker)
         }
     }
 }

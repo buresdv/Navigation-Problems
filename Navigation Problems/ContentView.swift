@@ -7,18 +7,24 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+struct ContentView: View
+{
+    @Environment(AppState.self) var appState
 
-#Preview {
-    ContentView()
+    var body: some View
+    {
+        NavigationSplitView
+        {
+            SidebarView()
+        } detail: {
+            NavigationStack(path: Bindable(appState).navigationPath)
+            {
+                DefaultStackView()
+                    .navigationDestination(for: ExampleModel.self)
+                    { model in
+                        DestinationView(data: model)
+                    }
+            }
+        }
+    }
 }
