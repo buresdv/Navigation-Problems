@@ -9,18 +9,19 @@ import SwiftUI
 
 struct SidebarView: View
 {
-    @Environment(ExampleModelTracker.self) var exampleModelTracker
+    @EnvironmentObject private var exampleModelTracker:ExampleModelTracker
 
     var body: some View
     {
-        List
+        List(selection: $exampleModelTracker.sidebarSelection)
         {
             ForEach(exampleModelTracker.data)
             { model in
-                NavigationLink(value: model)
+                NavigationLink(value: NavigationItem.detail(model))
                 {
                     Text(model.name)
                 }
+                .id(model)
             }
         }
     }

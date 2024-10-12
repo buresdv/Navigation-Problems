@@ -7,8 +7,13 @@
 
 import Foundation
 
-@Observable
-final class ExampleModelTracker
+enum NavigationItem: Hashable {
+    case detail(ExampleModel)
+    
+}
+
+class ExampleModelTracker:ObservableObject
 {
-    var data: [ExampleModel] = .init()
+    @Published var sidebarSelection: NavigationItem?
+    @Published var data: [ExampleModel] = [.init(name: "First"), .init(name: "Second")]
 }

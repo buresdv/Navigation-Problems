@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View
 {
+    @EnvironmentObject private var exampleModelTracker: ExampleModelTracker
     @Environment(AppState.self) var appState
 
     var body: some View
@@ -17,14 +18,20 @@ struct ContentView: View
         {
             SidebarView()
         } detail: {
-            NavigationStack(path: Bindable(appState).navigationPath)
-            {
+            switch exampleModelTracker.sidebarSelection {
+            case .detail(let detail):
+                DestinationView(data: detail)
+            default:
                 DefaultStackView()
-                    .navigationDestination(for: ExampleModel.self)
-                    { model in
-                        DestinationView(data: model)
-                    }
             }
+//            NavigationStack(path: Bindable(appState).navigationPath)
+//            {
+//                DefaultStackView()
+//                    .navigationDestination(for: ExampleModel.self)
+//                    { model in
+//                        DestinationView(data: model)
+//                    }
+//            }
         }
     }
 }
