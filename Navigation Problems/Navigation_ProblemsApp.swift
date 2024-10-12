@@ -12,20 +12,15 @@ struct Navigation_ProblemsApp: App
 {
     
     @State var appState: AppState = .init()
-    @State var exampleModelTracker: ExampleModelTracker = .init()
+    @StateObject var exampleModelTracker = ExampleModelTracker()
     
     var body: some Scene
     {
         WindowGroup
         {
             ContentView()
-                .onAppear
-                {
-                    exampleModelTracker.data.append(.init(name: "First"))
-                    exampleModelTracker.data.append(.init(name: "Second"))
-                }
                 .environment(appState)
-                .environment(exampleModelTracker)
+                .environmentObject(exampleModelTracker)
         }
     }
 }
