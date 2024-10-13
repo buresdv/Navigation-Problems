@@ -16,8 +16,5 @@ struct DefaultStackView: View
         
         Text("Choose a sub-view in the sidebar")
             .font(.subheadline)
-        
-        Text("It won't show up for some reason ☹️")
-            .font(.footnote)
     }
 }

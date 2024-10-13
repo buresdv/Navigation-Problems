@@ -23,6 +23,7 @@ struct Navigation_ProblemsApp: App
                 {
                     exampleModelTracker.data.append(.init(name: "First"))
                     exampleModelTracker.data.append(.init(name: "Second"))
+                    exampleModelTracker.data.append(.init(name: "Third"))
                 }
                 .environment(appState)
                 .environment(exampleModelTracker)

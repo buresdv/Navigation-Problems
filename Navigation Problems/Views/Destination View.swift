@@ -15,5 +15,6 @@ struct DestinationView: View
     var body: some View
     {
         Text(data.name)
+            .navigationTitle("Detail Page")
     }
 }

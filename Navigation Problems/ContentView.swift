@@ -17,14 +17,7 @@ struct ContentView: View
         {
             SidebarView()
         } detail: {
-            NavigationStack(path: Bindable(appState).navigationPath)
-            {
-                DefaultStackView()
-                    .navigationDestination(for: ExampleModel.self)
-                    { model in
-                        DestinationView(data: model)
-                    }
-            }
+            DefaultStackView()
         }
     }
 }

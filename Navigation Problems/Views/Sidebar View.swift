@@ -9,19 +9,27 @@ import SwiftUI
 
 struct SidebarView: View
 {
+    @Environment(AppState.self) var appState
     @Environment(ExampleModelTracker.self) var exampleModelTracker
 
     var body: some View
     {
-        List
+        @Bindable var appState: AppState = appState
+        
+        List(selection: $appState.navigationSelection)
         {
             ForEach(exampleModelTracker.data)
             { model in
-                NavigationLink(value: model)
+                NavigationLink
                 {
+                    DestinationView(data: model)
+                        .id(model.id)
+                } label: {
                     Text(model.name)
                 }
             }
+            
+            Text("navigationSelection: \(appState.navigationSelection?.uuidString ?? "nil")")
         }
     }
 }

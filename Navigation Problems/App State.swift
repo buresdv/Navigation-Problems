@@ -10,6 +10,6 @@ import SwiftUI
 
 @Observable
 final class AppState
-{
-    var navigationPath: NavigationPath = .init()
+{    
+    var navigationSelection: UUID?
 }
